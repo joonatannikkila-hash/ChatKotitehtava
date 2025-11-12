@@ -1,0 +1,17 @@
+# .NET
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.dll
+*.pdb
+*.exe
+*.log
+
+# React / Node
+frontend/node_modules/
+frontend/build/
+
+# macOS
+.DS_Store
+
