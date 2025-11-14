@@ -28,6 +28,11 @@ public class MessageController : ControllerBase
     // Yhteys Geminiin
     private async Task<string> LahetaGeminille(string viesti)
     {
+        /*
+        // väliaikainen testi
+        await Task.Delay(500);
+        return $"(Testivastaus Geminiltä) Kysyit: {viesti}";
+        */
         using var client = new HttpClient();
 
         var apiKey = "AIzaSyDxSMpco3NWfIdMu78AV4oj_3g6tlJNS34";

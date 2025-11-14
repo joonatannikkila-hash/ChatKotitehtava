@@ -31,3 +31,4 @@
 /Users/joonatan/ChatKotitehtava/Backend/obj/Debug/net8.0/Backend.pdb
 /Users/joonatan/ChatKotitehtava/Backend/obj/Debug/net8.0/Backend.genruntimeconfig.cache
 /Users/joonatan/ChatKotitehtava/Backend/obj/Debug/net8.0/ref/Backend.dll
+/Users/joonatan/ChatKotitehtava/Backend/obj/Debug/net8.0/Backend.sourcelink.json
