@@ -11,7 +11,13 @@ namespace Backend.Controllers;
 public class MessageController : ControllerBase
 {
     private readonly HttpClient _httpClient = new HttpClient();
-    private const string ApiKey = "AIzaSyDxSMpco3NWfIdMu78AV4oj_3g6tlJNS34";
+    private readonly string _ApiKey;
+    public MessageController(IConfiguration config)
+    {
+        // Haetaan avain User Secretsistä tai environment variablesta
+        _ApiKey = config["Gemini:ApiKey"]
+                  ?? throw new Exception("Gemini API key is missing. Add it via user-secrets.");
+    }
 
     [HttpPost]
     public async Task<IActionResult> PostMessage([FromBody] MessageRequest request)
@@ -35,7 +41,7 @@ public class MessageController : ControllerBase
 
     private async Task<string> LahetaGeminille(List<object> contents)
     {
-        var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={ApiKey}";
+        var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={_ApiKey}";
 
         var runko = new
         {
