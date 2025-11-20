@@ -39,8 +39,13 @@ public class MessageController : ControllerBase
         return Ok(new { response = vastaus });
     }
 
-    private async Task<string> LahetaGeminille(List<object> contents)
+    private const int maxFunctionCallit = 3; 
+
+    private async Task<string> LahetaGeminille(List<object> contents, int depth = 0)
     {
+        if (depth > maxFunctionCallit)
+            return "Liikaa function calleja peräkkäin";
+        
         var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={_ApiKey}";
 
         var runko = new
@@ -151,7 +156,7 @@ public class MessageController : ControllerBase
                     };
 
                     // uusi contents geminille
-                    return await LahetaGeminille(newContents);
+                    return await LahetaGeminille(newContents, depth +1);
                 }
 
                 // jos ei functioncallia niin palautetaan normaali teksti
