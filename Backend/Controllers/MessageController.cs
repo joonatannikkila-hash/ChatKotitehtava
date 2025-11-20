@@ -2,7 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Backend.Data;
+using Backend.Models;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers;
 
@@ -12,11 +15,14 @@ public class MessageController : ControllerBase
 {
     private readonly HttpClient _httpClient = new HttpClient();
     private readonly string _ApiKey;
-    public MessageController(IConfiguration config)
+    private readonly ChatDbContext _db; // <- käytetään oikeaa DbContextia
+
+    public MessageController(IConfiguration config, ChatDbContext db)
     {
         // Haetaan avain User Secretsistä tai environment variablesta
         _ApiKey = config["Gemini:ApiKey"]
                   ?? throw new Exception("Gemini API key is missing. Add it via user-secrets.");
+        _db = db;
     }
 
     [HttpPost]
@@ -36,7 +42,26 @@ public class MessageController : ControllerBase
         };
 
         var vastaus = await LahetaGeminille(contents);
+        
+        var chatItem = new ChatMessage
+        {
+            Question = request.Message,
+            Answer = vastaus
+        };
+
+        _db.ChatMessages.Add(chatItem);
+        await _db.SaveChangesAsync();
+        
         return Ok(new { response = vastaus });
+    }
+    
+    [HttpGet("history")]
+    public async Task<IActionResult> GetHistory()
+    {
+        var messages = await _db.ChatMessages
+            .OrderBy(m => m.Id) // järjestys Id:n mukaan
+            .ToListAsync();
+        return Ok(messages);
     }
 
     private const int maxFunctionCallit = 3; 

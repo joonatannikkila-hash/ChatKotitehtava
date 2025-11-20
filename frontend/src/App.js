@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
     const [inputMessage, setInputMessage] = useState(''); 
     const [responseMessage, setResponseMessage] = useState('');
-    const [history, setHistory] = useState([]); // <-- kaikki kysymykset ja vastaukset
+    const [history, setHistory] = useState([]); // kaikki kysymykset ja vastaukset
+
+    // Ladataan aiemmat keskustelut backendistä mount-vaiheessa
+    useEffect(() => {
+        const fetchHistory = async () => {
+            try {
+                const response = await fetch('http://localhost:5202/api/message/history');
+                const data = await response.json();
+                console.log("Historia backendiltä:", data);
+                setHistory(data); // täytetään historia
+            } catch (error) {
+                console.error('Virhe historian latauksessa:', error);
+            }
+        };
+
+        fetchHistory();
+    }, []);
 
     const sendMessage = async () => {
         if (inputMessage.trim() === "") {
@@ -34,6 +50,8 @@ function App() {
                 { question: inputMessage, answer: data.response }
             ]);
 
+            // Tyhjennetään syöte
+            setInputMessage('');
         } catch (error) {
             console.error('Virhe lähetettäessä viestiä:', error);
             setResponseMessage('Virhe lähetettäessä viestiä');
@@ -47,7 +65,7 @@ function App() {
     };
 
     return (
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex', height: '100vh', fontFamily: 'sans-serif' }}>
 
             {/* VASEN HISTORIALISTA */}
             <div style={{
@@ -83,19 +101,22 @@ function App() {
             <div style={{ flex: 1, padding: '2rem' }}>
                 <h1>Chat Gemini-botin kanssa</h1>
 
-                <input
-                    type="text"
-                    placeholder="Kirjoita viesti..."
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    style={{ width: '300px', marginRight: '10px' }}
-                />
+                <div style={{ marginBottom: '1rem' }}>
+                    <input
+                        type="text"
+                        placeholder="Kirjoita viesti..."
+                        value={inputMessage}
+                        onChange={(e) => setInputMessage(e.target.value)}
+                        style={{ width: '300px', marginRight: '10px' }}
+                    />
+                    <button onClick={sendMessage}>Lähetä</button>
+                </div>
 
-                <button onClick={sendMessage}>Lähetä</button>
-
-                <p style={{ marginTop: '1rem' }}>
-                    {responseMessage}
-                </p>
+                {responseMessage && (
+                    <div style={{ marginTop: '1rem', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}>
+                        {responseMessage}
+                    </div>
+                )}
             </div>
 
         </div>

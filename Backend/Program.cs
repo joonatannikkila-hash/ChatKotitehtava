@@ -1,4 +1,10 @@
+using Backend.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ChatDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("ChatDB")));
 
 
 builder.Services.AddControllers();    

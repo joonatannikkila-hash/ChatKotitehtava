@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/joonatan/ChatKotitehtava/Backend/Backend.csproj": {}
+    "/Users/joonatan/Projects/ChatKotitehtava/Backend/Backend.csproj": {}
   },
   "projects": {
-    "/Users/joonatan/ChatKotitehtava/Backend/Backend.csproj": {
+    "/Users/joonatan/Projects/ChatKotitehtava/Backend/Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/joonatan/ChatKotitehtava/Backend/Backend.csproj",
+        "projectUniqueName": "/Users/joonatan/Projects/ChatKotitehtava/Backend/Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "/Users/joonatan/ChatKotitehtava/Backend/Backend.csproj",
+        "projectPath": "/Users/joonatan/Projects/ChatKotitehtava/Backend/Backend.csproj",
         "packagesPath": "/Users/joonatan/.nuget/packages/",
-        "outputPath": "/Users/joonatan/ChatKotitehtava/Backend/obj/",
+        "outputPath": "/Users/joonatan/Projects/ChatKotitehtava/Backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/joonatan/.nuget/NuGet/NuGet.Config"
@@ -46,6 +46,20 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
