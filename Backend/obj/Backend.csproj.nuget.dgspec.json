@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/joonatan/Projects/ChatKotitehtava/Backend/Backend.csproj": {}
+    "/Users/joonatannikkila/ChatKotitehtava/Backend/Backend.csproj": {}
   },
   "projects": {
-    "/Users/joonatan/Projects/ChatKotitehtava/Backend/Backend.csproj": {
+    "/Users/joonatannikkila/ChatKotitehtava/Backend/Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/joonatan/Projects/ChatKotitehtava/Backend/Backend.csproj",
+        "projectUniqueName": "/Users/joonatannikkila/ChatKotitehtava/Backend/Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "/Users/joonatan/Projects/ChatKotitehtava/Backend/Backend.csproj",
-        "packagesPath": "/Users/joonatan/.nuget/packages/",
-        "outputPath": "/Users/joonatan/Projects/ChatKotitehtava/Backend/obj/",
+        "projectPath": "/Users/joonatannikkila/ChatKotitehtava/Backend/Backend.csproj",
+        "packagesPath": "/Users/joonatannikkila/.nuget/packages/",
+        "outputPath": "/Users/joonatannikkila/ChatKotitehtava/Backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/joonatan/.nuget/NuGet/NuGet.Config"
+          "/Users/joonatannikkila/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
